@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Morpion</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .gauche{
+      font: 40px Impact;
+      position: absolute;
+      left: 450px;
+      top: 340px;
+      cursor: pointer;
+      transform: scale(1);
+      transition-property: transform;
+      transition-duration: 400ms;
+    }
+    body{
+      background-image: url("image/itachi.jpg");
+      background-size: cover;
+    }
+    .morpion{
+      opacity: 0.7;      
+    }
+    #titre{
+      font-family: 'Bungee Spice', cursive;
+      opacity: 1;
+    }
+    h2{
+      font: 18px Century Gothic;
+    }
+    #texte{
+      font-family: 'Amarante', cursive;
+      opacity: 1;
+      color: white;
+      width: 950px;
+      left:20px;
+      }
+    #kunai{
+      font: 100px Impact;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      width: 200px;
+    }
+    #kunai:hover{
+      transform: scale(1.15)
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+  <h1 id="titre"><center><b>Histoire du Morpion</b></center></h1><br>
+  
+  <p id="texte">Ce jeu est d’origine japonaise. Il se joue dans les collèges et lycées français depuis la fin du XIXème. En France il est couramment appelé "jeu du morpion. Le but du jeu : faire un alignement de cases soit horizontalement, soit verticalement, soit diagonalement en traçant un trait sur l’alignement réalisé (son trait mord les pions). Le plus souvent le jeu est pratiqué en utilisant une simple feuille de papier avec des carreaux.
+  
+    Jeu qui consiste pour chacun des deux adversaires à placer à tour de rôle un signe distinctif (croix ou cercle) sur du papier quadrillé pour s'efforcer d'obtenir le plus rapidement une file continue de cinq signes dans n'importe quelle direction</p>
+  </div>
+
+ <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <a href="/index.html"><img id="kunai" src="image/kunai.png"alt=""/></a>
+
+</body>
+
+</html>

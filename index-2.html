@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Morpion</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .morpion{
+      opacity: 0.7;
+    }
+    #table {
+      position: relative;
+      left: 28%;
+      top: -18%;
+      display: none;
+      width: 40%;
+      height: 80%;
+      z-index: -1;
+    }
+    #Jeu {
+      position: absolute;
+      display: none;
+      background-color: black;
+      margin: 0% auto;
+      padding: 0%;
+      left: 40%;
+      top: 22%;
+    }
+
+    #Jeu div {
+      margin: 0% auto;
+      overflow: hidden;
+    }
+
+    #Jeu button {
+      background-color: #e8d499;
+      width: 100px;
+      height: 100px;
+      font-weight: bold;
+      font-size: 50px;
+      margin: 5px;
+      float:left;
+    }
+
+    #StatutJeu {
+      color: black;
+      background: #eee;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 20px;
+    }
+    #titre{
+      font: 100px Impact;
+      position: absolute;
+      left: 39%;
+      top: 1%;
+    }
+    a{
+       color:black; text-decoration : none;
+    }
+    .graphe1{
+      positon:relative;
+      display: inline-block;
+      margin-top: -5%;
+    }
+    .graphe2{
+      float: left;
+      positon: relative;
+      display: inline-block;
+      margin-top: -39%;
+      z-index: 1;
+    }
+    .t1{
+      position: relative;
+      display: inline-block;
+      margin-top: 5%;
+    }
+    .t2{
+      float: left;
+      position: relative;
+      display: inline-block;
+      margin-left: 40%;
+      margin-top: -55%;
+      z-index: 1;
+    }
+    .gauche{
+      font: 40px Impact;
+      position: relative;
+      left: 30px;
+      top: 165px;
+      width: 30%;
+      height: 11%;
+      overflow: visible;
+      cursor: pointer;
+      transform: scale(1);
+      transition-property: transform, color;
+      transition-duration: 400ms;
+    }
+    .gauche:hover{
+      transform: translateX(20px);
+      color: #1ce;
+    }
+
+    .gauche:hover #overl2{
+      transform: scale(1);
+      transform: translateX(400px);
+      transform: rotate(360deg); 
+    }
+
+    #overl1{
+      position: relative;
+      left: -25px;
+      top: -10px;
+      width: 32px;
+      height: 32px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;
+    }
+
+    #overl2{
+      position: relative;
+      left: -24.5px;
+      top: 0px;
+      width: 32px;
+      height: 32px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;
+    }
+
+    #overl3{
+      position: relative;
+      left: -24px;
+      top: 0px;
+      width: 32px;
+      height: 32px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;
+    }
+    #parchemin1{
+      position: relative;
+      display:inline-block;
+      left: -13px;
+      top: -520px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;
+    }
+    #parchemin2{
+      position: relative;
+      display:inline-block;
+      left: -152.5px;
+      top: -504px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;  
+    }
+    .kunai {
+      position: relative;
+      display: none;
+      width: 7%;
+      left: 2%;
+      top: -8%;
+      transition: transform;
+    }
+    .kunai:hover {
+      transform: scale(1.2);
+    }
+    .btn {
+      font: 70px Impact ;
+      color: #E83A85;
+      position: relative;
+      left: 48px;
+      top: 28px;
+      margin: 0px;
+      padding: 0px;
+      width: 28%;
+      height: 18%;
+      overflow: visible;
+      cursor: pointer;
+      transform: scale(1);
+      transition-property: transform, color;
+      transition-duration: 400ms;
+    }
+    .btn:hover {
+      transform: translateX(20px);
+      color: #1ce;
+    }
+    .btn:hover #overl1 {
+      transform: scale(1);
+      transform: translateX(400px);
+      transform: rotate(360deg);
+    }
+    .sound {
+      position:relative;
+      overflow: visible;
+      display: inline-block;
+      cursor: pointer;
+      width:2%;
+      top:0%;
+      left:0%;
+      float: left;
+    }
+    .btn2{
+      font: 40px Impact ;
+      position: relative;
+      left: 39px;
+      top: 100px;
+      width: 23%;
+      height: 11%; 
+      overflow: visible;
+      cursor: pointer;
+      transform: scale(1);
+      transition-property: transform, color;
+      transition-duration: 400ms;
+    }
+
+    .btn2:hover{
+      transform: translateX(20px);
+      color: #1ce;
+    }
+
+    .btn2:hover #overl3{
+      transform: scale(1);
+      transform: rotate(360deg);     
+    }
+    
+    body{
+      background-image: url("image/naruto.jpeg");
+      background-size: cover;
+      overflow: hidden;
+    }
+    .retour{
+      position: relative;
+      left: -152.5px;
+      top: -289px;
+      overflow: visible;
+      transition-property: transform;
+      transition-duration: 1000ms;           
+    }
+    .active:not(.par1, .par2){
+      transition-property: transform;
+      transition-duration: 6s;
+    }
+
+    .active:not(.par1, .par2){
+      transform: translateX(350px);
+    }
+    .reactive{   
+      animation-name: doublet;
+      animation-duration: 4s;
+      transition-property: transform;
+      transition-duration: 6s;
+    }
+    @keyframes doublet {
+      0%  {transform: -350;}
+      50%  {transform: -350;}
+      100%  {transform: -350;}
+    }
+
+    .desactive:not(.par1, .par2){
+      transition-property: transform;
+      transition-duration: 6s;
+    }
+
+    .desactive:not(.par1, .par2){
+      transform: translateX(0px);
+    }
+    div.active.par1{
+      opacity: 1;
+    }
+    div.desactive.par1{
+      opacity: 0;
+    }
+    div.active.par2{
+      opacity: 1;
+    }
+    div.desactive.par2{
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <video id="mute" src="audio/Naruto Ultimate Ninja Storm 4 1 Hour Menu Theme.mp3" autoplay muted loop frameborder="0"></video>
+    <video id="selects" src="audio/select.mp3" frameborder="0"></video>
+    <video id="deselects" src="audio/deselect.mp3" frameborder="0"></video>
+    <video id="jouers" src="audio/jouer.mp3" frameborder="0"></video>
+    <style>            
+      .box{
+        positon: relative;
+        font-size: 10px;             
+        background-color: burlywood;             
+        width: 710px;             
+        height: 400px;             
+        overflow: visible;             
+        word-wrap: break-word;             
+        padding: 10px 0px;             
+        margin: 0% auto;             
+        border: 03px black;    
+        border-radius: 10px;             
+        border-style:inset;  
+      }
+      .box2{    
+        positon: relative;
+        display:inline-block;
+        font-size: 10px;             
+        background-color: burlywood;    
+        width: 410px;             
+        height: 300px;             
+        overflow: visible;             
+        word-wrap: break-word;             
+        padding: 10px 0px;             
+        margin: -110px 270px auto;             
+        border: 0px black;             
+        border-radius: 10px;             
+        border-style:inset;  
+      }    
+      .par1{    
+        positon: relative;
+        font-size: 13px;
+        width: 300px;             
+        height: 250px;   
+        overflow: hidden;
+        font-family: Amarante, cursive;
+        color: black;
+        opacity: 0;
+        overflow: visible;             
+        word-wrap: break-word;                      
+        margin: -15px 60px auto;                                 
+      }    
+      .par2{    
+        positon: relative;
+        font-size: 13px;
+        display: inline
+        width: 300px;             
+        height: 250px;  
+        overflow: hidden;
+        font-family: Amarante, cursive;
+        color: black;
+        z-index: 1;
+        opacity: 0;
+        overflow: visible;             
+        word-wrap: break-word;
+        margin: -15px 60px auto;   
+      }
+    </style>
+  </header>
+  <a href="index.html"><img class="kunai" src="image/kunai.png"></a>
+    <div id="Jeu">
+    <div>
+      <button></button>
+      <button></button>
+      <button></button>
+    </div>
+    <div>
+      <button></button>
+      <button></button>
+      <button></button>
+    </div>
+    <div>
+      <button></button>
+      <button></button>
+      <button></button>
+    </div>
+    <div id="StatutJeu"></div>
+  </div> 
+  <div class="mute"><img class="sound" src="image/sound mute.png"></div>
+  <img id="table" src="image/shogitable.png">
+  <div class="box">
+    <h1 id="titre"><center><img src="image/titremorpion.png"></center></h1>
+      <div class="gauche transition2" type="button"><center><img id="overl2" src="image/coq-removebg-preview.png">HISTOIRE</center>
+      </div>
+      <div class="btn transition1" type="button"><center><img id="overl1" src="image/coq-removebg-preview.png">JOUER</center>
+      </div>
+      <div class="btn2 transition3" type="button"><center><img id="overl3" src="image/coq-removebg-preview.png">RÈGLES</center>
+      </div>
+    <div class="box2">
+      <div class="par1 desactive"><center><h1 class="t1">Histoire</h1><p class='graphe1'>Ce jeu est d’origine japonaise. Il se joue dans les collèges et lycées français depuis la fin du XIXème. En France il est couramment appelé "jeu du morpion. Le but du jeu : faire un alignement de cases soit horizontalement, soit verticalement, soit diagonalement en traçant un trait sur l’alignement réalisé (son trait mord les pions). Le plus souvent le jeu est pratiqué en utilisant une simple feuille de papier avec des carreaux.
+  
+    Jeu qui consiste pour chacun des deux adversaires à placer à tour de rôle un signe distinctif (croix ou cercle) sur du papier quadrillé pour s'efforcer d'obtenir le plus rapidement une file continue de cinq signes dans n'importe quelle direction</p></center></div>
+      <div class="par2 desactive"><center><h1 class="t2">Règles</h1><p class='graphe2'>Pour jouer une partie de morpion, les règles sont simples: il suffit de tracer sur une feuille blanche une grille de 3 cases sur 3 (selon les variantes, il est possible d'augmenter le nombre de cases). Le but du jeu est d'aligner avant son adversaire 3 symboles identiques horizontalement, verticalement ou en diagonale.</p></center></div>
+      <img id="parchemin1" src="image/parchemin1.png">
+      <img id="parchemin2" src="image/parchemin2.png">
+    </div></center>
+  <script src="script.js"></script>
+  <script src="script2.js"></script>
+ <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+</body>
+</html>
